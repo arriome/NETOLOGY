@@ -44,13 +44,15 @@
 
 import os
 from os import path
-
 migrations = 'Migrations'
 current_dir = os.path.dirname(os.path.abspath(__file__))
 print("DIR:",current_dir)
 real_dir = os.path.join(current_dir, migrations)
 print("REAL_DIR:", real_dir)
 if __name__ == '__main__':
+    def cls():
+        os.system('cls' if os.name=='nt' else 'clear')
+    cls()
     files_word = []
     def find_procedure(real_dir):
         print ("Inside find_proecedure")        
@@ -60,15 +62,15 @@ if __name__ == '__main__':
             real_files=os.path.join(real_dir, files)            
             with open(real_files, encoding='utf-8') as sql_file:
                 if word in sql_file:
-                    print("WORD FINDED IN: ",sql_file, end='')
+                    print("WORD FOUND IN: ",real_files, end='')
                     files_word.append(sql_file)
-                    out = len(files_word)
-                    print("FILES COUNT: ",out)
+                    
     while True:
         find_procedure(real_dir)
+        out = len(files_word)
+        print("FILES COUNT: ",out)
 
 pass    
-
 
 
 
