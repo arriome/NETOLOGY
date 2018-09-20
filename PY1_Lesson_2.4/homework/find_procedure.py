@@ -47,8 +47,9 @@ from os import path
 
 migrations = 'Migrations'
 current_dir = os.path.dirname(os.path.abspath(__file__))
+real_dir = os.path.join(migrations,current_dir)
 if __name__ == '__main__':
-	def find_procedure():
+	def find_procedure(real_dir):
 		word = input()
 		files_list = os.listdir(path=current_dir)
 		for files in files_list:
