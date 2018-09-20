@@ -50,41 +50,25 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 print("DIR:",current_dir)
 real_dir = os.path.join(current_dir, migrations)
 print("REAL_DIR:", real_dir)
-
-# def find_procedure(real_dir):
-#     word = input("Введите слово Процедура 1:")
-#     files_list = os.listdir(path=current_dir)
-#     for files in files_list:
-#         
-#         with open(files, encoding='utf-8') as sql_file:
-#             if word in sql_file:
-#                 print(sql_file, end='')
-#                 files_word.append(sql_file)
-#                 out = len(files_word)
-#                 print(out)
-# 
-# while True:
-#     find_procedure(real_dir)
-    
-
 if __name__ == '__main__':
     files_word = []
     def find_procedure(real_dir):
         print ("Inside find_proecedure")        
-        word = input("Введите слово Процедура 2:")
+        word = input("INPUT WORDS:")
         files_list = os.listdir(path=real_dir)
         for files in files_list:            
-            real_files=os.path.join(real_dir, files)
-            print("Real_files",real_files)
+            real_files=os.path.join(real_dir, files)            
             with open(real_files, encoding='utf-8') as sql_file:
                 if word in sql_file:
-                    print(sql_file, end='')
+                    print("WORD FINDED IN: ",sql_file, end='')
                     files_word.append(sql_file)
                     out = len(files_word)
-                    print(out)
+                    print("FILES COUNT: ",out)
     while True:
         find_procedure(real_dir)
 
 pass    
+
+
 
 
