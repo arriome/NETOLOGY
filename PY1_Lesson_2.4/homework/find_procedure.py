@@ -41,11 +41,11 @@
 # не забываем организовывать собственный код в функции
 # на зачёт с отличием, использовать папку 'Advanced Migrations'
 
-import glob
-import os.path
+import os
 
 migrations = 'Migrations'
+current_dir = os.path.dirname(os.path.abspath(__file__))
 
-files = glob.glob(os.path.join(migrations, "*.sql"))
-for file in files:
-	print(file)
+if __name__ == '__main__':
+    a = input()
+    pass
