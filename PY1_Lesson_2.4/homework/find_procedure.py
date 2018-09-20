@@ -42,22 +42,23 @@
 # на зачёт с отличием, использовать папку 'Advanced Migrations'
 
 import os
+import os.path
 
 migrations = 'Migrations'
 current_dir = os.path.dirname(os.path.abspath(__file__))
+if __name__ == '__main__':
+	def find_procedure():
+		word = input()
+		files_list = os.listdir(path=current_dir)
+		for files in files_list:
+		    with open(files, encoding='utf-8') as sql_file:
+			    if word in sql_file:
+			      print(sql_file, end='')
+			      files_word.append(sql_file)
+			      out = len(files_word)
+			      print(out)
+	while True:
+		find_procedure()
 
-if __name__ == '__main__':    
-    def find_procedure()
-        word = input()
-        files_list = os.listdir(path="currentdir")
-        for files in files_list
-            with open(files, encoding='utf-8') as sql_file:
-            if word in sql_file:
-                print(sql_file, end='')
-                files_word.append(sql_file)
-                out = len(files_word)
-                print(out)
-    while True:
-        find_procedure()            
-    
-    pass
+pass    
+
