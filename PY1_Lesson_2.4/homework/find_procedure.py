@@ -41,8 +41,8 @@
 # не забываем организовывать собственный код в функции
 # на зачёт с отличием, использовать папку 'Advanced Migrations'
 
-
 import os
+import chardet  
 from os import path
 migrations = 'Migrations'
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -59,10 +59,14 @@ if __name__ == '__main__':
         word = input("INPUT WORDS:")
         files_list = os.listdir(path=real_dir)
         for files in files_list:            
-            real_files=os.path.join(real_dir, files)            
-            with open(real_files, encoding='utf-8') as sql_file:
-                if word in sql_file:
-                    print("WORD FOUND IN: ",real_files, end='')
+            real_files=os.path.join(real_dir, files) 
+            with open(real_files, "rb") as f:        
+                text_string = f.read()
+                result = chardet.detect(text_string)        
+                text_enc = result['encoding']        
+            with open(real_files, encoding = text_enc) as sql_file:
+                if word in sql_file:                 
+                    print("WORD FOUND IN: ",real_files)
                     files_word.append(sql_file)
                     
     while True:
@@ -71,6 +75,4 @@ if __name__ == '__main__':
         print("FILES COUNT: ",out)
 
 pass    
-
-
 
