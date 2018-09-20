@@ -42,7 +42,8 @@
 # на зачёт с отличием, использовать папку 'Advanced Migrations'
 
 import os
-import os.path
+import system
+from os import path
 
 migrations = 'Migrations'
 current_dir = os.path.dirname(os.path.abspath(__file__))
