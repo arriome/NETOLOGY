@@ -59,7 +59,7 @@ if __name__ == '__main__':
         word = input("INPUT WORDS:")
         files_list = os.listdir(path=real_dir)                      # получаем список всех файлов        
         for input_file in files_list:            
-            if file.endswith(".sql"):                               # проверяем расширение sql
+            if input_file.endswith(".sql"):                               # проверяем расширение sql
                 real_files=os.path.join(real_dir, input_file) 
                 with open(real_files, "rb") as f:                       # получаем кодировку файлов
                     text_string = f.read()
