@@ -57,17 +57,18 @@ if __name__ == '__main__':
     def find_procedure(real_dir):
         print ("Inside find_proecedure")        
         word = input("INPUT WORDS:")
-        files_list = os.listdir(path=real_dir)                      # получаем список всех файлов
-        for files in files_list:            
-            real_files=os.path.join(real_dir, files) 
-            with open(real_files, "rb") as f:                       # получаем кодировку файлов
-                text_string = f.read()
-                result = chardet.detect(text_string)        
-                text_enc = result['encoding']        
-            with open(real_files, encoding = text_enc) as sql_file: # ищем слова в списке файлов
-                if word in sql_file:                 
-                    print("WORD FOUND IN: ",real_files)
-                    files_word.append(sql_file)                     # получаем список файлов с вхождениями слов
+        files_list = os.listdir(path=real_dir)                      # получаем список всех файлов        
+        for input_file in files_list:            
+            if file.endswith(".sql"):                               # проверяем расширение sql
+                real_files=os.path.join(real_dir, input_file) 
+                with open(real_files, "rb") as f:                       # получаем кодировку файлов
+                    text_string = f.read()
+                    result = chardet.detect(text_string)        
+                    text_enc = result['encoding']        
+                with open(real_files, encoding = text_enc) as sql_file: # ищем слова в списке файлов
+                    if word in sql_file:                 
+                        print("WORD FOUND IN: ",real_files)
+                        files_word.append(sql_file)                     # получаем список файлов с вхождениями слов
                     
     while True:
         find_procedure(real_dir)
