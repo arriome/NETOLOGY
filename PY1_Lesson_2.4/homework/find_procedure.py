@@ -44,36 +44,40 @@
 import os
 import chardet  
 from os import path
+
 migrations = 'Migrations' 
 current_dir = os.path.dirname(os.path.abspath(__file__))
-print("DIR:",current_dir)
+print("DIR:", current_dir)
 real_dir = os.path.join(current_dir, migrations)
 print("REAL_DIR:", real_dir)
 if __name__ == '__main__':
+    
     def cls():
         os.system('cls' if os.name=='nt' else 'clear')
-    cls()                                                           # очищаем экран консоли
+    cls()                                                           # Clear console screen.  
     files_word = []
+    
     def find_procedure(real_dir):
-        print ("Inside find_proecedure")        
+        print ('Inside find_proecedure')        
         word = input("INPUT WORDS:")
-        files_list = os.listdir(path=real_dir)                      # получаем список всех файлов        
+        files_list = os.listdir(path = real_dir)                      # Get list of all files.  
         for input_file in files_list:            
-            if input_file.endswith(".sql"):                               # проверяем расширение sql
-                real_files=os.path.join(real_dir, input_file) 
-                with open(real_files, "rb") as f:                       # получаем кодировку файлов
+            if input_file.endswith('.sql'):                               # Check sql extension.  
+                real_files = os.path.join(real_dir, input_file) 
+                with open(real_files, 'rb') as f:                       # Get literal encode.  
                     text_string = f.read()
                     result = chardet.detect(text_string)        
                     text_enc = result['encoding']        
-                with open(real_files, encoding = text_enc) as sql_file: # ищем слова в списке файлов
-                    if word in sql_file:                 
-                        print("WORD FOUND IN: ",real_files)
-                        files_word.append(sql_file)                     # получаем список файлов с вхождениями слов
+                with open(real_files, encoding = text_enc) as sql_file: # Search the words in the file list.  
+                    sql_file_read = sql_file.read
+                    if word in sql_file_read:                 
+                        print('WORD FOUND IN: ',real_files)
+                        files_word.append(sql_file)                     # Get list of files with searching words.  
                     
     while True:
         find_procedure(real_dir)
-        out = len(files_word)                                       # считаем количество файлов с вхождениями
-        print("FILES COUNT: ",out)
+        out = len(files_word)                                       # Count number of files with searching words.  
+        print('FILES COUNT: ', out)
 
 pass    
 
