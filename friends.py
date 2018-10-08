@@ -1,41 +1,44 @@
+from friendscon import *
 import requests
 import json
 from urllib.parse import urlencode
 from urllib.parse import urlencode
+print('Start!')
+print ('TEST 1:',getdata())
 
-APP_ID = 6413185
-AUTH_URL = 'https://oauth.vk.com/authorize'
-params = {
-    'client_id': APP_ID,
-    'display': 'page',
-    'scope': 'friends',
-    'response_type': 'token',
-    'v': '5.8'
-}
 
-response = requests.get('?'.join([AUTH_URL, urlencode(params)]))
+class User_Defenition2:
+    def __init__(self):
+        def getdata():
+            params = {
+            'client_id': friendscon.APP_ID,
+            'display': 'page',
+            'scope': 'friends',
+            'response_type': 'token',
+        '   v': '5.8'
+        }
+        return params
 
-print('?'.join([AUTH_URL, urlencode(params)]))
+        
+user =  User_Defenition2()
+print(user.getdata())
+response = requests.get('?'.join([friendscon.AUTH_URL, urlencode(params)]))
 
-API_URL = 'https://api.vk.com/method/'
-API_VERSION = '5.8'
-TOKEN = '10f71e1197d0cd085288568fae2a55ad9c8a029d7659271021e1dd62cdb63ccabf38a5315498b25b3678e'
-
+print('?'.join([friendscon.AUTH_URL, urlencode(params)]))
 
 def make_vk_request_url(method_name, params):
-    return f'{API_URL}/{method_name}?{urlencode(params)}'
-
+    return f'{friendscon.API_URL}/{method_name}?{urlencode(params)}'
 
 def get_mutual_friends(source_uid, target_uid):
     method_name = 'friends.getMutual'
-    params = {
+    User_Defenition.params = {
         'target_uid': target_uid,
         'source_uid': source_uid,
-        'access_token': TOKEN,
-        'v': API_VERSION
+        'access_token': friendscon.TOKEN,
+        'v': friendscon.API_VERSION
     }
 
-    request_url = make_vk_request_url(method_name, params)
+    request_url = make_vk_request_url(method_name, User_Defenition.params)
     mutual_friends_response = requests.get(request_url).text
 
     return json.loads(mutual_friends_response)#['response']
@@ -62,8 +65,9 @@ if __name__ == '__main__':
     int(target_uid)
     mutual_uid_list = get_mutual_friends(int(source_uid),int(target_uid))
     mutual_friends_links_list = make_vk_urls_from_list(mutual_uid_list)
-
-    print(mutual_friends_links_list) 
+    print(response)
+    print(mutual_uid_list)
+    print('Список общих друзей: ',mutual_friends_links_list) 
     
     #3471318 ID
     #203896624 ID
